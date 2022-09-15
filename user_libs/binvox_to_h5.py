@@ -21,14 +21,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-with open('/home/johnathan/devel/naradar/web-gpr-frontend/data/5bd34986-c81d-4112-94a3-f749dc3f8cc7.obj_256.binvox', 'rb') as f:
+with open('/home/johnathan/devel/naradar/web-gpr-frontend/data/9ea04068-8192-437a-a469-561ca06daa2a.obj_256.binvox', 'rb') as f:
     m1 = read_as_3d_array(f)
 
 print("Resolution of the model along (X,Y,Z) axis is",m1.dims, m1.data.shape)
 
 discretization=(0.002, 0.002, 0.002)
 
-mat_index = 2
+mat_index = 0
 data = m1.data.astype(int)
 with h5py.File('test.hdf5','w') as hdf:
     data[data==0] = -1

@@ -5,7 +5,7 @@ import gprMax
 fn = Path(__file__)
 
 title = gprMax.Title(name=fn.with_suffix('').name)
-domain = gprMax.Domain(p1=(0.512,0.512,0.512))
+domain = gprMax.Domain(p1=(0.240,0.210,0.002))
 dxdydz = gprMax.Discretisation(p1=(0.002, 0.002, 0.002))
 time_window = gprMax.TimeWindow(time=3e-9)
 
@@ -22,12 +22,12 @@ rxSteps = gprMax.RxSteps(p1=(0.002, 0, 0))
 
 #box = gprMax.Box(p1=(0, 0, 0), p2=(0.240, 0.170, 0.002), material_id='half_space')
 
-box = gprMax.GeometryObjectsRead(p1=(0.02,0.02,0.02), 
+box = gprMax.GeometryObjectsRead(p1=(0,0,0), 
     geofile='/home/johnathan/devel/naradar/pointCloud/gprMax/user_libs/test.hdf5' , 
     matfile='/home/johnathan/devel/naradar/pointCloud/gprMax/user_models/materials.txt')
 
 gv = gprMax.GeometryView(p1=(0, 0, 0),
-                         p2=(0.512, 0.512 , 0.512),
+                         p2=(0.240, 0.210 , 0.002),
                          dl=(0.002, 0.002, 0.002),
                          filename=fn.with_suffix('').name,
                          output_type='n')
@@ -54,11 +54,11 @@ for i in range(60):
     scene.add(box)
     scene.add(cylinder)
 
-    scene.add(gv)
+   # scene.add(gv)
 
     scenes.append(scene)
 
 # run the simulation (b-scan)
-# gprMax.run(scenes=scenes, geometry_only=False, n=60, outputfile=fn)
+gprMax.run(scenes=scenes, geometry_only=False, n=60, outputfile=fn)
 
-gprMax.run(scenes=scenes, geometry_only=True, n=1, outputfile=fn)
+#gprMax.run(scenes=scenes, geometry_only=True, n=1, outputfile=fn)
